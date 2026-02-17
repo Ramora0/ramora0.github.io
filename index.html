@@ -40,10 +40,19 @@
             z-index: 999;
         }
 
-        .container {
-            max-width: 680px;
+        /* Layout */
+        .page-layout {
+            display: flex;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 40px;
+            gap: 64px;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 720px;
+            min-width: 0;
         }
 
         /* Header */
@@ -78,22 +87,14 @@
             font-size: 0.88rem;
             font-family: var(--mono);
             letter-spacing: 0.02em;
-            transition: color 0.2s;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
         }
 
         .links a:hover {
             color: var(--accent);
-        }
-
-        .links a::before {
-            content: '→ ';
-            color: var(--accent);
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .links a:hover::before {
-            opacity: 1;
+            border-bottom-color: var(--accent);
         }
 
         /* Divider */
@@ -175,6 +176,80 @@
             border-bottom-color: var(--accent);
         }
 
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            padding-top: 80px;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+
+        .sidebar .section-label {
+            margin-bottom: 16px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 40px;
+        }
+
+        .sidebar-card {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 18px;
+            background: var(--surface);
+            margin-bottom: 12px;
+        }
+
+        .sidebar-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-card h4 {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-card .meta {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 8px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-card .meta .tag {
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.68rem;
+        }
+
+        .sidebar-card p {
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            line-height: 1.65;
+        }
+
+        .sidebar-card a.live-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .sidebar-card a.live-link:hover {
+            border-bottom-color: var(--accent);
+        }
+
         /* Footer */
         footer {
             padding: 48px 0;
@@ -203,6 +278,26 @@
         .project:nth-child(3) { animation-delay: 0.2s; }
 
         /* Responsive */
+        @media (max-width: 900px) {
+            .page-layout {
+                flex-direction: column;
+                gap: 0;
+                padding: 0 24px;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding-top: 0;
+                padding-bottom: 48px;
+                order: 1;
+            }
+
+            .container {
+                order: 0;
+                max-width: 100%;
+            }
+        }
+
         @media (max-width: 520px) {
             header { padding: 56px 0 48px; }
             header h1 { font-size: 2.2rem; }
@@ -214,69 +309,92 @@
 <body>
     <div class="grain"></div>
 
-    <div class="container">
-        <header>
-            <h1>Lee Davis</h1>
-            <p class="tagline">CS Undergrad & AI Researcher at The Ohio State University</p>
-            <div class="links">
-                <a href="https://github.com/Ramora0">GitHub</a>
-                <a href="https://www.linkedin.com/in/lee-davis-a26b941b7/">LinkedIn</a>
-                <a href="mailto:davislee4891@gmail.com">Email</a>
-            </div>
-        </header>
-
-        <hr class="divider">
-
-        <section>
-            <p class="section-label">Research</p>
-
-            <div class="project">
-                <h3>Dynamic Tokenization for ASR</h3>
-                <div class="meta">
-                    <span class="tag">DeepMind</span>
-                    <span class="tag">Carnegie Mellon</span>
-                    <span class="tag">Publication in progress</span>
+    <div class="page-layout">
+        <div class="container">
+            <header>
+                <h1>Lee Davis</h1>
+                <p class="tagline">CS Undergrad & AI Researcher at The Ohio State University</p>
+                <div class="links">
+                    <a href="https://github.com/Ramora0" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/lee-davis-a26b941b7/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="mailto:davislee4891@gmail.com">Email</a>
                 </div>
-                <p>
-                    Developing boundary prediction methods for dynamic tokenization in automatic speech recognition. Instead of fixed-length tokens, the system learns variable-length segments that align with linguistic structure — achieving comparable ASR performance with roughly 5× compression, significantly reducing sequence lengths without sacrificing accuracy.
-                </p>
-            </div>
+            </header>
 
-            <div class="project">
-                <h3>Searchless Chess via Learned Evaluation</h3>
-                <div class="meta">
-                    <span class="tag">Transformer</span>
-                    <span class="tag">No search</span>
+            <hr class="divider">
+
+            <section>
+                <p class="section-label">Research</p>
+
+                <div class="project">
+                    <h3>Dynamic Tokenization for ASR</h3>
+                    <div class="meta">
+                        <span class="tag">DeepMind</span>
+                        <span class="tag">Carnegie Mellon</span>
+                        <span class="tag">Publication in progress</span>
+                    </div>
+                    <p>
+                        Developing boundary prediction methods for dynamic tokenization in automatic speech recognition. Instead of fixed-length tokens, the system learns variable-length segments that align with linguistic structure — achieving comparable ASR performance with roughly 5× compression, significantly reducing sequence lengths without sacrificing accuracy.
+                    </p>
                 </div>
-                <p>
-                    A transformer-based chess encoder that plays entirely without search — no MCTS, no minimax, no lookahead. The model evaluates positions and selects moves directly from board state, relying on learned pattern recognition rather than tree traversal.
-                </p>
-                <a class="live-link" href="https://lichess.org/@/IAmASearchlessBot">Play it on Lichess ↗</a>
-            </div>
-        </section>
 
-        <hr class="divider">
-
-        <section>
-            <p class="section-label">Projects</p>
-
-            <div class="project">
-                <h3>WikiChat</h3>
-                <div class="meta">
-                    <span class="tag">RAG</span>
-                    <span class="tag">AWS</span>
-                    <span class="tag">Full-stack</span>
+                <div class="project">
+                    <h3>Searchless Chess via Learned Evaluation</h3>
+                    <div class="meta">
+                        <span class="tag">Transformer</span>
+                        <span class="tag">No search</span>
+                    </div>
+                    <p>
+                        A transformer-based chess encoder that plays entirely without search — no MCTS, no minimax, no lookahead. The model evaluates positions and selects moves directly from board state, relying on learned pattern recognition rather than tree traversal.
+                    </p>
+                    <a class="live-link" href="https://lichess.org/@/IAmASearchlessBot" target="_blank" rel="noopener">Play it on Lichess ↗</a>
                 </div>
-                <p>
-                    A retrieval-augmented chatbot that lets users ask natural language questions about game wikis, starting with Don't Starve Together. Full-stack application with authentication, subscription billing, web scraping pipeline, and a RAG system backed by AWS — built end-to-end.
-                </p>
-                <a class="live-link" href="https://wikichat.net">wikichat.net ↗</a>
-            </div>
-        </section>
+            </section>
 
-        <footer>
-            <p>davislee4891@gmail.com</p>
-        </footer>
+            <hr class="divider">
+
+            <section>
+                <p class="section-label">Projects</p>
+
+                <div class="project">
+                    <h3>WikiChat</h3>
+                    <div class="meta">
+                        <span class="tag">RAG</span>
+                        <span class="tag">AWS</span>
+                        <span class="tag">Full-stack</span>
+                    </div>
+                    <p>
+                        A retrieval-augmented chatbot that lets users ask natural language questions about game wikis, starting with Don't Starve Together. Full-stack application with authentication, subscription billing, web scraping pipeline, and a RAG system backed by AWS — built end-to-end.
+                    </p>
+                    <a class="live-link" href="https://wikichat.net" target="_blank" rel="noopener">wikichat.net ↗</a>
+                </div>
+            </section>
+
+            <footer>
+                <p>davislee4891@gmail.com</p>
+            </footer>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <p class="section-label">Datasets</p>
+                <div class="sidebar-card">
+                    <h4>Chess AV Mates</h4>
+                    <div class="meta">
+                        <span class="tag">HuggingFace</span>
+                        <span class="tag">Chess</span>
+                    </div>
+                    <p>
+                        A cleaned-up version of Google's chess dataset. Groups all legal moves and evaluations under each position, and labels every checkmate sequence with how many moves until mate.
+                    </p>
+                    <a class="live-link" href="https://huggingface.co/datasets/Ramora0/chess-av-mates" target="_blank" rel="noopener">HuggingFace ↗</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <!-- Add minor project sidebar-cards here -->
+            </div>
+        </aside>
     </div>
 </body>
 </html>
