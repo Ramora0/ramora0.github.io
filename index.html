@@ -182,6 +182,29 @@
             flex-shrink: 0;
             padding-top: 80px;
             animation: fadeUp 0.8s ease 0.3s both;
+            position: sticky;
+            top: 0;
+            max-height: 100vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--text-dim);
         }
 
         .sidebar .section-label {
@@ -392,7 +415,18 @@
             </div>
 
             <div class="sidebar-section">
-                <!-- Add minor project sidebar-cards here -->
+                <p class="section-label">Extras</p>
+                <div class="sidebar-card">
+                    <h4>DePhonemizer</h4>
+                    <div class="meta">
+                        <span class="tag">NLP</span>
+                        <span class="tag">Python</span>
+                    </div>
+                    <p>
+                        Converts phonemic transcriptions back into readable text — reversing the phonemization process.
+                    </p>
+                    <a class="live-link" href="https://github.com/Ramora0/DePhonemizer" target="_blank" rel="noopener">GitHub ↗</a>
+                </div>
             </div>
         </aside>
     </div>
