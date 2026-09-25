@@ -299,6 +299,7 @@
 
         .project:nth-child(2) { animation-delay: 0.1s; }
         .project:nth-child(3) { animation-delay: 0.2s; }
+        .project:nth-child(4) { animation-delay: 0.3s; }
 
         /* Responsive */
         @media (max-width: 900px) {
@@ -350,6 +351,18 @@
                 <p class="section-label">Research</p>
 
                 <div class="project">
+                    <h3>AlphaZero Solves the Rubik's Cube from Uniform Random Starts</h3>
+                    <div class="meta">
+                        <span class="tag">Reinforcement learning</span>
+                        <span class="tag">AlphaZero</span>
+                        <span class="tag">Under review at TMLR</span>
+                    </div>
+                    <p>
+                        Earlier learned Rubik's cube solvers generate their training data by scrambling backward from the solved cube. This paper shows that isn't necessary. A standard AlphaZero pipeline, trained only on uniformly random cubes and rewarded only for the fraction of correct facelets, solves all 1,000 cubes of the DeepCubeA benchmark on every seed. It trains from scratch in four hours on one V100. The main change to AlphaZero is a value target built from the best state each episode actually reached. Without any search, the policy network alone solves 78.8% of the benchmark.
+                    </p>
+                </div>
+
+                <div class="project">
                     <h3>Dynamic Tokenization for ASR</h3>
                     <div class="meta">
                         <span class="tag">DeepMind</span>
@@ -378,6 +391,19 @@
 
             <section>
                 <p class="section-label">Projects</p>
+
+                <div class="project">
+                    <h3>Hollow Knight RL</h3>
+                    <div class="meta">
+                        <span class="tag">Reinforcement learning</span>
+                        <span class="tag">C</span>
+                        <span class="tag">PPO</span>
+                    </div>
+                    <p>
+                        An effort to train one policy that beats every Godhome boss in Hollow Knight. The core is hksim, a seeded, deterministic C port of the boss fights, rebuilt from the game's decompiled code and fast enough to train in. A PPO trainer learns against the simulator, and a game mod records ground-truth traces to check the port frame by frame and evaluate policies in the real game.
+                    </p>
+                    <a class="live-link" href="https://github.com/Ramora0/hkrl" target="_blank" rel="noopener">GitHub ↗</a>
+                </div>
 
                 <div class="project">
                     <h3>WikiChat</h3>
