@@ -176,6 +176,16 @@
             border-bottom-color: var(--accent);
         }
 
+        .project video {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            margin: 18px 0 4px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: #000;
+        }
+
         /* Sidebar */
         .sidebar {
             width: 280px;
@@ -402,6 +412,9 @@
                     <p>
                         An effort to train one policy that beats every Godhome boss in Hollow Knight. The core is hksim, a seeded, deterministic C port of the boss fights, rebuilt from the game's decompiled code and fast enough to train in. A PPO trainer learns against the simulator, and a game mod records ground-truth traces to check the port frame by frame and evaluate policies in the real game.
                     </p>
+                    <video controls muted playsinline preload="metadata" poster="media/hkrl-nkg.jpg" aria-label="Demo: Nightmare King Grimm fight">
+                        <source src="media/hkrl-nkg.mp4" type="video/mp4">
+                    </video>
                     <a class="live-link" href="https://github.com/Ramora0/hkrl" target="_blank" rel="noopener">GitHub ↗</a>
                 </div>
 
